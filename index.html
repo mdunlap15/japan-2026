@@ -149,19 +149,20 @@
     background:rgba(25,29,58,.96);
     backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
     border:1px solid var(--line-dark);border-radius:22px;
-    padding:8px 2px;
+    padding:8px 1px;
     box-shadow:0 10px 34px rgba(25,29,58,.35);
     user-select:none;-webkit-user-select:none;
   }
   .tbtn{
-    flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+    flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;
     background:none;border:0;cursor:pointer;padding:5px 0 3px;border-radius:14px;
     color:rgba(248,243,231,.52);
-    font-family:"Space Mono",monospace;font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;
+    font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.02em;text-transform:uppercase;
     transition:color .15s ease, transform .12s ease;
     touch-action:manipulation;
   }
-  .tbtn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .tbtn svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  @media(max-width:360px){ .tbtn{font-size:7.2px} .tbtn svg{width:19px;height:19px} }
   .tbtn:active{transform:scale(.9)}
   .tbtn[aria-selected="true"]{color:var(--marigold)}
   body{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
@@ -594,7 +595,7 @@
       <div class="when"><div class="t">Flights</div></div>
       <div class="body">
         <p><b>Yulia is booked:</b> United 35 nonstop, SFO 12:25 PM Sun Oct 25 → Osaka-Kansai (KIX) 4:45 PM Mon Oct 26 — you cross the date line, so you land the next afternoon. Full details, seat and confirmation live in the <b>Bookings</b> tab.</p>
-        <p><b>Elena is booked round trip:</b> out Sat Oct 24 on Sichuan Airlines via Chengdu (overnight layover, lands KIX <b>14:35 Mon Oct 26</b> — two hours before Yulia), home Fri Nov 6 on Air China from <b>Haneda at 08:30</b> via Beijing, into Moscow the same evening. Full legs, terminals and baggage in <b>Bookings</b>. Still to buy: <b>Katya's tickets</b> (matching Elena's routing keeps the trio together door to door) and <b>Yulia's return</b> to SFO for Nov 6.</p>
+        <p><b>Elena is booked round trip:</b> out Sat Oct 24 on Sichuan Airlines via Chengdu (overnight layover, lands KIX <b>14:35 Mon Oct 26</b> — two hours before Yulia), home Fri Nov 6 on Air China from <b>Haneda at 08:30</b> via Beijing, into Moscow the same evening. Full legs, terminals and baggage in <b>Bookings</b>. <b>Yulia flies home Fri Nov 6 too</b> — but on Qatar Airways out of <b>Narita at 16:55</b>, so her last morning in Tokyo is free while the others leave at dawn. Still to buy: <b>Katya's tickets</b> (matching Elena's routing keeps them together door to door).</p>
       </div>
     </div>
 
@@ -659,7 +660,7 @@
       <div class="when"><div class="t">Перелёты</div></div>
       <div class="body">
         <p><b>У Юли всё куплено:</b> United 35 без пересадок, SFO 12:25 вс 25 окт → Осака-Кансай (KIX) 16:45 пн 26 окт — по пути пересекаете линию перемены дат, поэтому посадка уже на следующий день. Полные детали, место и подтверждение — во вкладке <b>Брони</b>.</p>
-        <p><b>У Лены куплено туда и обратно:</b> туда — сб 24 окт Сычуаньскими авиалиниями через Чэнду (ночёвка на пересадке, посадка в KIX <b>в 14:35 пн 26 окт</b> — на два часа раньше Юли), обратно — пт 6 ноя рейсом Air China из <b>Ханэды в 08:30</b> через Пекин, вечером того же дня — Москва. Все сегменты, терминалы и багаж — во вкладке <b>Брони</b>. Осталось купить: <b>билеты Кати</b> (тот же маршрут, что у Лены, — и тройка летит вместе от двери до двери) и <b>обратный Юли</b> в SFO на 6 ноября.</p>
+        <p><b>У Лены куплено туда и обратно:</b> туда — сб 24 окт Сычуаньскими авиалиниями через Чэнду (ночёвка на пересадке, посадка в KIX <b>в 14:35 пн 26 окт</b> — на два часа раньше Юли), обратно — пт 6 ноя рейсом Air China из <b>Ханэды в 08:30</b> через Пекин, вечером того же дня — Москва. Все сегменты, терминалы и багаж — во вкладке <b>Брони</b>. <b>Юля тоже улетает в пт 6 ноя</b> — но рейсом Qatar Airways из <b>Нариты в 16:55</b>, так что её последнее утро в Токио свободно, пока девочки уезжают на рассвете. Осталось купить: <b>билеты Кати</b> (тот же маршрут, что у Лены, — и они летят вместе от двери до двери).</p>
       </div>
     </div>
 
@@ -784,15 +785,33 @@
         <p class="bk-hint">The 08:30 sets the last morning: <b>out of the hotel by 5:45</b> — Day 12 is built around it.</p>
       </div>
 
+      <div class="bk flight">
+        <div class="bk-top">
+          <div class="grow">
+            <div class="bk-kind">Flight · Yulia · Return</div>
+            <div class="bk-title">Tokyo → Doha → Moscow</div>
+          </div>
+          <span class="bk-badge ok">Confirmed</span>
+        </div>
+        <div class="bk-line"></div>
+        <div class="bk-grid">
+          <div class="bk-cell"><span class="k">Fri Nov 6</span><span class="v">QR 809 · <b>Narita T2 16:55 → Doha 23:05</b></span></div>
+          <div class="bk-cell"><span class="k">Layover</span><span class="v">2 h 20 min at Hamad</span></div>
+          <div class="bk-cell"><span class="k">Sat Nov 7</span><span class="v">QR 337 · <b>Doha 01:25 → SVO T-C 07:00</b></span></div>
+          <div class="bk-cell"><span class="k">Airline · refs</span><span class="v">Qatar Airways · seats 20A / 15A · 25 kg · in her Qatar app</span></div>
+        </div>
+        <p class="bk-hint"><b>A late departure — she has the whole last morning in Tokyo</b> after the girls leave for Haneda at 5:45. Narita check-in opens 3 h ahead: leave central Tokyo by ~13:00 on the N'EX. Day 12 is split for exactly this.</p>
+      </div>
+
       <div class="bk flight todo">
         <div class="bk-top">
           <div class="grow">
             <div class="bk-kind">Flights · still to book</div>
-            <div class="bk-title">Katya (both ways) · Yulia's return</div>
+            <div class="bk-title">Katya — both ways</div>
           </div>
           <span class="bk-badge wait">To book</span>
         </div>
-        <p class="bk-hint">Katya: matching Elena's Sichuan Airlines + Air China routing keeps the trio together door to door. Yulia: SFO return for Fri Nov 6 — if it leaves from <b>Narita</b> instead of Haneda, her airport run differs from the girls' (both routes live in the Day 12 page). Paste details here once ticketed.</p>
+        <p class="bk-hint">Matching Elena's Sichuan Airlines + Air China routing keeps the two of them together door to door — and on the same 5:45 airport run on the last morning.</p>
       </div>
 
       <div class="bk todo">
@@ -966,15 +985,33 @@
         <p class="bk-hint">08:30 задаёт всё последнее утро: <b>из отеля к 5:45</b> — «День 12» построен ровно под это.</p>
       </div>
 
+      <div class="bk flight">
+        <div class="bk-top">
+          <div class="grow">
+            <div class="bk-kind">Рейс · Юля · Обратно</div>
+            <div class="bk-title">Токио → Доха → Москва</div>
+          </div>
+          <span class="bk-badge ok">Куплен</span>
+        </div>
+        <div class="bk-line"></div>
+        <div class="bk-grid">
+          <div class="bk-cell"><span class="k">Пт 6 ноя</span><span class="v">QR 809 · <b>Нарита T2 16:55 → Доха 23:05</b></span></div>
+          <div class="bk-cell"><span class="k">Пересадка</span><span class="v">2 ч 20 мин в Хамаде</span></div>
+          <div class="bk-cell"><span class="k">Сб 7 ноя</span><span class="v">QR 337 · <b>Доха 01:25 → SVO T-C 07:00</b></span></div>
+          <div class="bk-cell"><span class="k">Рейс · брони</span><span class="v">Qatar Airways · места 20A / 15A · 25 кг · в её приложении Qatar</span></div>
+        </div>
+        <p class="bk-hint"><b>Поздний вылет — всё последнее утро в Токио у неё свободно</b>, после того как девочки уедут в Ханэду в 5:45. Регистрация в Нарите открывается за 3 часа: выезжать из центра ~в 13:00 на N'EX. «День 12» специально разделён на два расписания.</p>
+      </div>
+
       <div class="bk flight todo">
         <div class="bk-top">
           <div class="grow">
             <div class="bk-kind">Рейсы · ещё не куплены</div>
-            <div class="bk-title">Катя (туда и обратно) · Юля обратно</div>
+            <div class="bk-title">Катя — туда и обратно</div>
           </div>
           <span class="bk-badge wait">Забронировать</span>
         </div>
-        <p class="bk-hint">Катя: тот же маршрут Sichuan Airlines + Air China, что у Лены, — и вся тройка летит вместе от двери до двери. Юля: обратный в SFO на пт 6 ноя — если он из <b>Нариты</b>, а не из Ханэды, дорога в аэропорт у неё своя (оба маршрута — на странице «День 12»). Впишите детали, как только билеты будут на руках.</p>
+        <p class="bk-hint">Тот же маршрут Sichuan Airlines + Air China, что у Лены, — и они летят вместе от двери до двери, и в аэропорт в последнее утро едут одной компанией в 5:45.</p>
       </div>
 
       <div class="bk todo">
@@ -2699,7 +2736,7 @@
     <div class="phead">
       <div class="kicker"><span class="no">12</span><span class="eyebrow">Friday · Nov 6</span><span class="wx" data-wxday="d12"></span></div>
       <h2>Sayonara — fly home</h2>
-      <p class="lede">A 5:00 alarm, but a painless one: Elena's (and, once ticketed, Katya's) CA-184 leaves <b>Haneda Terminal 3 at 08:30</b>, via Beijing, touching down in Moscow at 17:40 the same evening. Out of the hotel by 5:45 and the morning runs itself. Yulia's flight home is still to book — her exit may differ.</p>
+      <p class="lede">Two very different last mornings. Elena and Katya are up at 5:00 for the <b>08:30 out of Haneda</b>; Yulia doesn't leave Narita until <b>16:55</b>, so she gets one more unhurried Tokyo day. Say the real goodbyes tonight — 5:45 AM is no time for speeches.</p>
     </div>
     <div class="block">
       <div class="when"><div class="t">5:45</div><div class="sub">out the door, quietly</div></div>
@@ -2707,20 +2744,20 @@
         <p>The JR Pass is long expired — today rides on the Suica/ICOCA balance. Konbini run at the station: onigiri, coffee-in-a-can, one last strange KitKat flavor for the plane.</p>
         <div class="cards">
           <div class="card">
-            <div class="top"><h4>To Haneda T3 — the 08:30 plan</h4></div>
-            <p class="note">From the Asakusa/Ueno base, the <b>Asakusa subway line runs straight through to Haneda Terminal 3</b> (Keikyu through-service) — ~40 min, first trains just after 5:00, tap through with IC. Backup: a taxi at that hour is ~25 min (~¥7,000–9,000 split three ways). Be at T3 by <b>6:30</b> — check-in, the tax-refund customs desk if you shopped tax-free after Nov 1 (passports + receipts, before security), then gates.</p>
-            <div class="tags"><span class="tag">HND T3</span><span class="tag hot">At airport 6:30</span></div>
+            <div class="top"><h4>Elena &amp; Katya — Haneda T3, 08:30</h4></div>
+            <p class="note">From the Asakusa/Ueno base, the <b>Asakusa subway line runs straight through to Haneda Terminal 3</b> (Keikyu through-service) — ~40 min, first trains just after 5:00, tap through with IC. Backup: a taxi at that hour is ~25 min (~¥7,000–9,000 split two ways). At T3 by <b>6:30</b> — check-in, the tax-refund customs desk if you shopped tax-free after Nov 1 (passports + receipts, before security), then gates. Moscow by 17:40 tonight.</p>
+            <div class="tags"><span class="tag">HND T3</span><span class="tag hot">Leave 5:45</span></div>
             <div class="acts"><a class="act site" target="_blank" rel="noopener" href="https://tokyo-haneda.com/en/access/train/index.html">Website ↗</a></div>
           </div>
           <div class="card">
-            <div class="top"><h4>Yulia's exit — TBD</h4></div>
-            <p class="note">If her SFO flight leaves from <b>Haneda</b>, it's one shared taxi and a proper goodbye at T3. If from <b>Narita</b>: N'EX from Tokyo Station (~55 min, ~¥3,100–3,500, reserved) — first departures land her at NRT by ~8:00. This card fills in once her ticket exists.</p>
-            <div class="tags"><span class="tag">NRT or HND</span><span class="tag warm">To book</span></div>
+            <div class="top"><h4>Yulia — Narita T2, 16:55</h4></div>
+            <p class="note">Nine spare hours. Go back for the thing you didn't get to — Tsukiji's outer market, a Ueno museum, the last konbini haul — then <b>leave central Tokyo by ~13:00</b>. N'EX from Tokyo Station is ~55 min (~¥3,100–3,500, all reserved), Terminal 2, at NRT three hours ahead. Bags can go to the airport ahead of you by same-day delivery if you'd rather roam light.</p>
+            <div class="tags"><span class="tag">NRT T2</span><span class="tag warm">Free until 13:00</span></div>
             <div class="acts"><a class="act site" target="_blank" rel="noopener" href="https://www.jreast.co.jp/en/multi/nex/">Website ↗</a></div>
           </div>
         </div>
         <p>Empty the ICOCA at the airport konbini or keep it: it's valid ten years, and it's a good reason to come back.</p>
-        <div class="call note"><p class="ct"><span class="dot m"></span>At the gate</p><p>Over airport coffee, open the <b>Journal tab</b> one last time — tap "Copy trip recap" and send the where-we-went list to the group chat. Moscow by dinner, San Francisco by memory. 良い旅を — it was a good one.</p></div>
+        <div class="call note"><p class="ct"><span class="dot m"></span>At the gate</p><p>Over airport coffee, open the <b>Journal tab</b> one last time — tap "Copy trip recap" and send the where-we-went list to the group chat. Everyone lands in Moscow by Saturday morning. 良い旅を — it was a good one.</p></div>
       </div>
     </div>
   </div>
@@ -2728,7 +2765,7 @@
     <div class="phead">
       <div class="kicker"><span class="no">12</span><span class="eyebrow">Пятница · 6 ноя</span><span class="wx" data-wxday="d12"></span></div>
       <h2>Саёнара — летим домой</h2>
-      <p class="lede">Будильник в 5:00 — но безболезненный: рейс Лены (а после покупки билета — и Кати) CA-184 вылетает из <b>Ханэды, терминал 3, в 08:30</b>, через Пекин, и уже в 17:40 того же вечера садится в Москве. Выйти из отеля к 5:45 — и утро пройдёт само. Обратный билет Юли ещё не куплен — её маршрут может отличаться.</p>
+      <p class="lede">Два совершенно разных последних утра. Лена и Катя встают в 5:00 на <b>рейс 08:30 из Ханэды</b>; у Юли вылет из Нариты только в <b>16:55</b> — так что ей достаётся ещё один неспешный токийский день. Настоящие прощания — сегодня вечером: 5:45 утра не время для речей.</p>
     </div>
     <div class="block">
       <div class="when"><div class="t">5:45</div><div class="sub">тихо выходим</div></div>
@@ -2736,20 +2773,20 @@
         <p>JR Pass давно истёк — сегодня едем на балансе Suica/ICOCA. Забег в конбини на станции: онигири, кофе в банке, последний странный вкус KitKat в самолёт.</p>
         <div class="cards">
           <div class="card">
-            <div class="top"><h4>В Ханэду, T3 — план «08:30»</h4></div>
-            <p class="note">От базы в Асакусе/Уэно <b>линия метро Асакуса идёт напрямую до терминала 3 Ханэды</b> (сквозное сообщение с Keikyu) — ~40 мин, первые поезда сразу после 5:00, оплата касанием IC. Запасной вариант: такси в этот час — ~25 мин (~¥7,000–9,000 на троих). Быть в T3 к <b>6:30</b>: регистрация, стойка возврата такс-фри, если после 1 ноября покупали без налога (паспорта + чеки, до досмотра), затем к выходу на посадку.</p>
-            <div class="tags"><span class="tag">HND T3</span><span class="tag hot">В аэропорту к 6:30</span></div>
+            <div class="top"><h4>Лена и Катя — Ханэда T3, 08:30</h4></div>
+            <p class="note">От базы в Асакусе/Уэно <b>линия метро Асакуса идёт напрямую до терминала 3 Ханэды</b> (сквозное сообщение с Keikyu) — ~40 мин, первые поезда сразу после 5:00, оплата касанием IC. Запасной вариант: такси в этот час — ~25 мин (~¥7,000–9,000 на двоих). Быть в T3 к <b>6:30</b>: регистрация, стойка возврата такс-фри, если после 1 ноября покупали без налога (паспорта + чеки, до досмотра), затем к выходу на посадку. В Москве — сегодня в 17:40.</p>
+            <div class="tags"><span class="tag">HND T3</span><span class="tag hot">Выезд в 5:45</span></div>
             <div class="acts"><a class="act site" target="_blank" rel="noopener" href="https://tokyo-haneda.com/en/access/train/index.html">Сайт ↗</a></div>
           </div>
           <div class="card">
-            <div class="top"><h4>Выход Юли — уточняется</h4></div>
-            <p class="note">Если её рейс в SFO из <b>Ханэды</b> — одно общее такси и настоящие проводы в T3. Если из <b>Нариты</b>: N'EX от станции Токио (~55 мин, ~¥3,100–3,500, по брони) — первые поезда привозят в NRT к ~8:00. Эта карточка заполнится, как только билет появится.</p>
-            <div class="tags"><span class="tag">NRT или HND</span><span class="tag warm">Купить билет</span></div>
+            <div class="top"><h4>Юля — Нарита T2, 16:55</h4></div>
+            <p class="note">Девять свободных часов. Вернитесь туда, куда не успели, — внешний рынок Цукидзи, музей в Уэно, последний заход в конбини — и <b>выезжайте из центра около 13:00</b>. N'EX от станции Токио — ~55 мин (~¥3,100–3,500, только по брони), терминал 2, в NRT за три часа до вылета. Чемоданы можно отправить в аэропорт заранее службой доставки — и гулять налегке.</p>
+            <div class="tags"><span class="tag">NRT T2</span><span class="tag warm">Свободна до 13:00</span></div>
             <div class="acts"><a class="act site" target="_blank" rel="noopener" href="https://www.jreast.co.jp/en/multi/nex/">Сайт ↗</a></div>
           </div>
         </div>
         <p>Обнулите ICOCA в аэропортовом конбини — или оставьте: карта действует десять лет, и это хороший повод вернуться.</p>
-        <div class="call note"><p class="ct"><span class="dot m"></span>У выхода на посадку</p><p>За аэропортовым кофе загляните в <b>вкладку «Журнал»</b> в последний раз — нажмите «Скопировать итог поездки» и отправьте список «где мы были» в общий чат. К ужину — Москва, в памяти — вся Япония. 良い旅を — поездка удалась.</p></div>
+        <div class="call note"><p class="ct"><span class="dot m"></span>У выхода на посадку</p><p>За аэропортовым кофе загляните в <b>вкладку «Журнал»</b> в последний раз — нажмите «Скопировать итог поездки» и отправьте список «где мы были» в общий чат. К субботнему утру все будут в Москве. 良い旅を — поездка удалась.</p></div>
       </div>
     </div>
 </div></section>
@@ -3095,7 +3132,6 @@
     </div>
     <div class="menu">
       <button class="mitem" data-go="plan"><b><span class="L-en">Before you go</span><span class="L-ru">До отъезда</span></b><span><span class="L-en">Flights, visas, the setup</span><span class="L-ru">Рейсы, визы, подготовка</span></span></button>
-      <button class="mitem" data-go="bookings"><b><span class="L-en">Bookings</span><span class="L-ru">Брони</span></b><span><span class="L-en">Confirmations & calendar</span><span class="L-ru">Подтверждения и календарь</span></span></button>
       <button class="mitem" data-go="index"><b><span class="L-en">The index</span><span class="L-ru">Каталог</span></b><span><span class="L-en">Every spot + fresh finds</span><span class="L-ru">Все места + свежие находки</span></span></button>
       <button class="mitem" data-go="trip"><b><span class="L-en">Notes &amp; spending</span><span class="L-ru">Заметки и расходы</span></b><span><span class="L-en">Shared notes · expense log</span><span class="L-ru">Общие заметки · учёт трат</span></span></button>
       <button class="mitem" data-go="toolkit"><b><span class="L-en">Toolkit</span><span class="L-ru">Инструменты</span></b><span><span class="L-en">Menu decoder · emergency</span><span class="L-ru">Разбор меню · экстренное</span></span></button>
@@ -3120,6 +3156,10 @@
   <button class="tbtn" role="tab" aria-selected="false" data-tabbtn="map">
     <svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.7-6.5-10.2A6.5 6.5 0 0 1 12 4.3a6.5 6.5 0 0 1 6.5 6.5C18.5 15.3 12 21 12 21Z"/><circle cx="12" cy="10.7" r="2.3"/></svg>
     <span class="L-en">Map</span><span class="L-ru">Карта</span>
+  </button>
+  <button class="tbtn" role="tab" aria-selected="false" data-tabbtn="bookings">
+    <svg viewBox="0 0 24 24"><path d="M3.5 8.5A1.5 1.5 0 0 1 5 7h14a1.5 1.5 0 0 1 1.5 1.5v2a2 2 0 0 0 0 3.9v2.1A1.5 1.5 0 0 1 19 18H5a1.5 1.5 0 0 1-1.5-1.5v-2.1a2 2 0 0 0 0-3.9Z"/><path d="M14 7v11"/></svg>
+    <span class="L-en">Booked</span><span class="L-ru">Брони</span>
   </button>
   <button class="tbtn" role="tab" aria-selected="false" data-tabbtn="chat">
     <svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.6c-.6.5-1.4 0-1.4-.7Z"/></svg>
@@ -3234,7 +3274,8 @@ window.TRIP = {
     [2026,11,3,10,0,'Last shinkansen — to Tokyo','Odawara → Tokyo ~35 min · Asakusa this afternoon','Последний синкансэн — в Токио','Одавара → Токио ~35 мин · днём Асакуса'],
     [2026,11,4,10,0,'Koishikawa Kōrakuen + the palace','Pass expired yesterday — today rides on Suica/ICOCA','Коисикава Коракуэн и дворец','Пасс истёк вчера — сегодня всё по Suica/ICOCA'],
     [2026,11,5,19,0,'The farewell dinner','Whichever table won the vote','Прощальный ужин','Тот ресторан, что победил в голосовании'],
-    [2026,11,6,5,45,'Out the door — Haneda T3','CA-184 at 08:30 · Asakusa line direct ~40 min','Выходим — Ханэда, T3','CA-184 в 08:30 · прямая линия Асакуса ~40 мин'],
+    [2026,11,6,5,45,'Elena + Katya: out the door','CA-184 at 08:30 from Haneda T3 · Asakusa line direct ~40 min','Лена и Катя: выходим','CA-184 в 08:30 из Ханэды T3 · прямая линия Асакуса ~40 мин'],
+    [2026,11,6,13,0,'Yulia: leave for Narita','N\'EX from Tokyo Station ~55 min · QR 809 at 16:55','Юля: выезд в Нариту','N\'EX от станции Токио ~55 мин · QR 809 в 16:55'],
   ],
 
   // Map pins + visited tracker: [name, lat, lng, cat, dayKey, cityKey]
@@ -3633,10 +3674,15 @@ window.TRIP = {
       ['19:30',120,1,'🥂 Farewell dinner (vote winner)','🥂 Прощальный ужин (победитель голосования)',20,35.6735,139.7658,'#vote'],
     ],
     d12: [
-      ['5:15',30,0,'🧳 Wake, final pack + checkout','🧳 Подъём, сборы и выезд',0,35.7118,139.777,''],
+      ['5:15',30,0,'🧳 Elena + Katya: pack + checkout','🧳 Лена и Катя: сборы и выезд',0,35.7118,139.777,''],
       ['5:45',40,0,'🚇 Asakusa line → Haneda T3','🚇 Линия Асакуса → Ханэда, T3',0,35.7118,139.777,35.5454,139.769,'https://tokyo-haneda.com/en/access/train/index.html'],
       ['6:30',110,0,'🛂 Check-in, tax refund + security','🛂 Регистрация, такс-фри и досмотр',5,35.5454,139.769,''],
-      ['8:30',250,1,'✈️ CA-184 → Beijing → Moscow (SVO 17:40)','✈️ CA-184 → Пекин → Москва (SVO 17:40)',0,35.5454,139.769,''],
+      ['8:30',60,1,'✈️ CA-184 → Beijing → Moscow (lands 17:40)','✈️ CA-184 → Пекин → Москва (в 17:40)',0,35.5454,139.769,''],
+      ['9:30',180,0,'☕ Yulia: one more Tokyo morning','☕ Юля: ещё одно токийское утро',0,35.6716,139.7639,''],
+      ['12:40',20,0,'🧳 Yulia: checkout → Tokyo Station','🧳 Юля: выезд и до станции Токио',0,35.6816,139.7653,''],
+      ['13:05',55,0,'🚄 N\'EX → Narita T2','🚄 N\'EX → Нарита, T2',0,35.6816,139.7653,35.7719,140.3929,'https://www.jreast.co.jp/en/multi/nex/'],
+      ['14:00',175,0,'🛂 Yulia: check-in, refund + security','🛂 Юля: регистрация, такс-фри и досмотр',5,35.7719,140.3929,''],
+      ['16:55',60,1,'✈️ QR 809 → Doha → Moscow (lands Sat 07:00)','✈️ QR 809 → Доха → Москва (сб в 07:00)',0,35.7719,140.3929,''],
     ],
   },
 };
@@ -3709,7 +3755,7 @@ window.TRIP = {
   })();
   const DAYS = (T.DAYS || []).map(d => d.key);
   const TABPANEL = { home:'plan', bookings:'bookings', index:'index', map:'map', chat:'chat', trip:'trip', vote:'vote', journal:'journal', toolkit:'toolkit', more:'more' };
-  const DOCK = { plan:'more', bookings:'more', index:'more', toolkit:'more', more:'more', map:'map', chat:'chat', trip:'more', vote:'vote', journal:'journal' };
+  const DOCK = { plan:'more', bookings:'bookings', index:'more', toolkit:'more', more:'more', map:'map', chat:'chat', trip:'more', vote:'vote', journal:'journal' };
   const panels = Array.from(document.querySelectorAll('.panel'));
   const dockBtns = Array.from(document.querySelectorAll('.tbtn'));
   const chips = Array.from(document.querySelectorAll('.chip'));

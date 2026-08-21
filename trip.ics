@@ -220,18 +220,36 @@ DESCRIPTION:Whichever table won the vote. Day: Meiji Jingū → Harajuku
  Metropolitan Government deck.
 END:VEVENT
 BEGIN:VEVENT
+UID:japan-2026-16@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART;TZID=Asia/Tokyo:20261106T130000
+DTEND;TZID=Asia/Tokyo:20261106T165500
+SUMMARY:✈️ Yulia: Narita T2 → Doha → Moscow
+LOCATION:Narita Airport Terminal 2
+DESCRIPTION:Free morning in Tokyo\, then leave central Tokyo by ~13:00. N'E
+ X from Tokyo Station ~55 min (~¥3\,100–3\,500\, all reserved) to Termin
+ al 2 — three hours before departure. QR 809 16:55 → Doha 23:05 · layo
+ ver 2 h 20 min · QR 337 01:25 → Moscow SVO Terminal C 07:00 Sat Nov 7. 
+ Seats 20A / 15A\, 25 kg checked. Refs in her Qatar app.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yulia: head for Tokyo Station — N'EX to Narita
+TRIGGER:-PT60M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:japan-2026-15@japan-2026
 DTSTAMP:20260821T090000Z
 DTSTART;TZID=Asia/Tokyo:20261106T054500
 DTEND;TZID=Asia/Tokyo:20261106T083000
-SUMMARY:✈️ Fly home — CA-184\, 08:30 from Haneda T3
+SUMMARY:✈️ Elena + Katya: CA-184\, 08:30 from Haneda T3
 LOCATION:Haneda Airport Terminal 3
 DESCRIPTION:Leave the hotel by 5:45 — the Asakusa subway line runs direct
   to Haneda T3 (~40 min\; taxi ~25 min as backup). At T3 by 6:30: check-in\
  , tax-refund customs BEFORE security for post-Nov-1 purchases (passports +
   receipts). CA-184 08:30 → Beijing 11:40 · layover 2 h 35 min\, same te
  rminal · CA-909 14:15 → Moscow SVO Terminal C 17:40. Baggage: 2 checked
-  + 5 kg cabin. Yulia's return: TBD.
+  + 5 kg cabin. (Yulia flies later from Narita — separate event.)
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Wake up — out the door by 5:45\, Haneda by 6:30

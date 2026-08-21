@@ -76,7 +76,7 @@ if (booted) {
   }
 
   // dock buttons
-  const expect = { days: 'days', map: 'map', chat: 'chat', vote: 'vote', journal: 'journal', more: 'more' };
+  const expect = { days: 'days', bookings: 'bookings', map: 'map', chat: 'chat', vote: 'vote', journal: 'journal', more: 'more' };
   for (const b of document.querySelectorAll('.tbtn')) {
     click(b);
     const want = expect[b.dataset.tabbtn];
