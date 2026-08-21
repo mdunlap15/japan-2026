@@ -1,0 +1,12 @@
+{
+  "name": "japan-2026",
+  "private": true,
+  "description": "Osaka + Tokyo trip PWA \u00e2\u20ac\u201d static app; this package.json exists only for the pre-deploy smoke test",
+  "scripts": {
+    "test": "node test/smoke.mjs",
+    "test:strict": "node test/smoke.mjs --strict"
+  },
+  "devDependencies": {
+    "jsdom": "^24.0.0"
+  }
+}

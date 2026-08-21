@@ -1,0 +1,241 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Japan 2026 Trip//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Japan — Yulia\, Elena & Katya · Oct 26 – Nov 6 2026
+X-WR-TIMEZONE:Asia/Tokyo
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:japan-2026-00@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART:20261024T192000Z
+DTEND:20261026T053500Z
+SUMMARY:✈️ Elena: Moscow → Chengdu → Osaka
+LOCATION:Sheremetyevo Terminal C
+DESCRIPTION:3U-3888 departs SVO Terminal C 22:20 Sat Oct 24\, arrives Cheng
+ du Tianfu 11:00 Oct 25. Overnight layover (~22½ h\, within China's 24-hou
+ r visa-free transit — keep the onward ticket handy). 3U-3963 departs 09:
+ 40 Oct 26\, lands KIX Terminal 1 at 14:35 — two hours before Yulia. Bagg
+ age: 1 checked + 8 kg cabin. Refs in the Aviakassa receipt.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Elena: leave for Sheremetyevo — 3U-3888 at 22:20
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:japan-2026-01@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART:20261025T192500Z
+DTEND:20261026T074500Z
+SUMMARY:✈️ UA 35 · SFO → Osaka-Kansai (Yulia)
+LOCATION:San Francisco International Airport (SFO)
+DESCRIPTION:United 35 nonstop · departs SFO 12:25 PM Sun Oct 25 · lands K
+ IX 4:45 PM Mon Oct 26 (crosses the date line). Seat 40A Economy Plus (conf
+  & eTicket in the United app). Before flying: Visit Japan Web QR ready\, y
+ en or card for the ICOCA\, download offline maps.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Leave for SFO — UA 35 boards soon
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:japan-2026-02@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART;TZID=Asia/Tokyo:20261026T143500
+DTEND;TZID=Asia/Tokyo:20261026T180000
+SUMMARY:🛬 Landings at KIX · then Namba
+LOCATION:Kansai International Airport
+DESCRIPTION:Elena lands 14:35 (via Chengdu) · Yulia lands 16:45 on UA 35 
+ — meet at arrivals\; buy the ICOCA cards while waiting. Then one Nankai 
+ Rapi:t to Namba together (~39 min\, ~¥1\,450)\, drop bags\, and Dōtonbor
+ i for the first dinner under the neon.
+END:VEVENT
+BEGIN:VEVENT
+UID:japan-2026-03@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART;TZID=Asia/Tokyo:20261027T103000
+DTEND;TZID=Asia/Tokyo:20261027T130000
+SUMMARY:🏯 Osaka Castle
+LOCATION:Osaka Castle
+DESCRIPTION:Metro to Tanimachi 4-chōme\, walk up through the park. Admissi
+ on ¥1\,200 — buy the timed e-ticket online. Kuromon market breakfast be
+ fore · kushikatsu lunch after · Umeda Sky at 16:30 for sunset · evening
+  = the vote (Kaiyukan aquarium or Namba izakaya).
+END:VEVENT
+BEGIN:VEVENT
+UID:japan-2026-04@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART;TZID=Asia/Tokyo:20261028T083000
+DTEND;TZID=Asia/Tokyo:20261028T103000
+SUMMARY:🎫 Activate JR Passes → move to Kyoto
+LOCATION:Osaka Station JR ticket office
+DESCRIPTION:Exchange the vouchers + activate all three 7-day JR Passes (val
+ id through Nov 3). Reserve the Oct 31 Hiroshima seats\, Nov 2 Odawara and 
+ Nov 3 Tokyo legs at the same time — free with the pass. Then the JR Kyot
+ o line ~30 min. Afternoon: Kinkaku-ji → Ryōan-ji → Sanjūsangen-dō 
+ · Gion at dusk.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:JR Pass vouchers + passports in hand for the exchange office
+TRIGGER:-PT1H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:japan-2026-05@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART;TZID=Asia/Tokyo:20261029T080000
+DTEND;TZID=Asia/Tokyo:20261029T120000
+SUMMARY:🎋 Arashiyama — bamboo\, Tenryū-ji\, monkeys
+LOCATION:Arashiyama\, Kyoto
+DESCRIPTION:JR Sagano line from Kyoto Station ~20 min (covered). Leave by 8
+ :00 — at the bamboo grove by 8:30 it is still yours. Tenryū-ji ¥500 ·
+  yuba lunch by Togetsu-kyō · Iwatayama Monkey Park ¥800 (entry to 16:00
+ ).
+END:VEVENT
+BEGIN:VEVENT
+UID:japan-2026-06@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART;TZID=Asia/Tokyo:20261030T090000
+DTEND;TZID=Asia/Tokyo:20261030T170000
+SUMMARY:🦌 Nara day trip
+LOCATION:Nara Park
+DESCRIPTION:JR Miyakoji Rapid ~45 min (covered). Deer crackers ~¥200 — b
+ ow first\, they bow back. Tōdai-ji Great Buddha ¥800 · kakinoha-zushi l
+ unch · Harushika sake tasting ¥500 · back to Kyoto by evening.
+END:VEVENT
+BEGIN:VEVENT
+UID:japan-2026-07@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART;TZID=Asia/Tokyo:20261031T080300
+DTEND;TZID=Asia/Tokyo:20261031T101000
+SUMMARY:🚄 Shinkansen → Hiroshima (early!)
+LOCATION:Kyoto Station
+DESCRIPTION:Leave the hotel 7:30. ~08:03 Hikari/Sakura (~2h\, covered — N
+ ozomi is not). Arrive ~10:10. Morning: Peace Memorial Park\, A-Bomb Dome\,
+  Peace Memorial Museum ¥200 (web ticket bought ahead). Lunch: Hiroshima o
+ konomiyaki at Nagata-ya.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Leave for Kyoto Station — the 08:03 to Hiroshima
+TRIGGER:-PT45M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:japan-2026-08@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART;TZID=Asia/Tokyo:20261031T134500
+DTEND;TZID=Asia/Tokyo:20261031T173000
+SUMMARY:⛩️ Miyajima — Itsukushima Shrine
+LOCATION:Miyajima\, Hiroshima
+DESCRIPTION:JR train to Miyajimaguchi (~30 min) + JR ferry — both covered
+  by the pass (+¥100 island tax). Itsukushima Shrine ¥300 · the great to
+ rii in the sea · momiji manju warm off the griddle. 18:03 shinkansen back
+  · Kyoto ~20:30.
+END:VEVENT
+BEGIN:VEVENT
+UID:japan-2026-09@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART;TZID=Asia/Tokyo:20261101T083000
+DTEND;TZID=Asia/Tokyo:20261101T113000
+SUMMARY:⛩️ Fushimi Inari — the ten thousand torii
+LOCATION:Fushimi Inari Taisha\, Kyoto
+DESCRIPTION:JR Nara line 2 stops (covered)\, free\, open always. Early beat
+ s the crowds. Afternoon is the free slot — Ginkaku-ji\, Nishiki Market o
+ r Higashiyama\, whatever won the vote. Tonight: pack an overnight bag for 
+ Hakone.
+END:VEVENT
+BEGIN:VEVENT
+UID:japan-2026-10@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART;TZID=Asia/Tokyo:20261102T083000
+DTEND;TZID=Asia/Tokyo:20261102T153000
+SUMMARY:🚄 Kyoto → Hakone (forward the big bags!)
+LOCATION:Kyoto Station
+DESCRIPTION:At checkout ~8:30: send the big suitcases to the Tokyo hotel by
+  takkyubin (front desk arranges it\, ~¥2\,000–2\,500/bag\, arrives next
+  day) — take overnight bags only. Shinkansen to Odawara ~2h (covered)\, 
+ then Hakone Freepass ~¥5\,000 (2 days): Tozan line · Lake Ashi pirate sh
+ ip · ropeway over Ōwakudani (black eggs).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Takkyubin the big bags at checkout — overnight bags only to H
+ akone
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:japan-2026-11@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART;TZID=Asia/Tokyo:20261102T153000
+DTEND;TZID=Asia/Tokyo:20261102T170000
+SUMMARY:♨️ Onsen ryokan check-in
+LOCATION:Hakone
+DESCRIPTION:Yukata on · kaiseki dinner in · soak under the maples. Tattoo
+ s: ask about private (kashikiri) baths when booking.
+END:VEVENT
+BEGIN:VEVENT
+UID:japan-2026-12@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART;TZID=Asia/Tokyo:20261103T100000
+DTEND;TZID=Asia/Tokyo:20261103T113000
+SUMMARY:🚄 Hakone → Tokyo (Culture Day)
+LOCATION:Odawara Station
+DESCRIPTION:Local line Hakone-Yumoto → Odawara ~15 min\, then shinkansen 
+ to Tokyo ~35 min (the JR Pass's final valid day — reserved seats matter 
+ on the holiday). Afternoon: Sensō-ji + Nakamise-dōri + Tokyo Skytree (pr
+ e-booked slot) · evening Ginza.
+END:VEVENT
+BEGIN:VEVENT
+UID:japan-2026-13@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART;TZID=Asia/Tokyo:20261104T100000
+DTEND;TZID=Asia/Tokyo:20261104T160000
+SUMMARY:🍵 Gardens\, the palace & a tea ceremony
+LOCATION:Koishikawa Kōrakuen\, Tokyo
+DESCRIPTION:The JR Pass expired yesterday — today rides on Suica/ICOCA. K
+ oishikawa Kōrakuen ¥300 · Nijūbashi at the Imperial Palace · Chazen t
+ ea ceremony (booked ahead) · Odaiba via Yurikamome from Shimbashi if the 
+ energy holds.
+END:VEVENT
+BEGIN:VEVENT
+UID:japan-2026-14@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART;TZID=Asia/Tokyo:20261105T190000
+DTEND;TZID=Asia/Tokyo:20261105T210000
+SUMMARY:🍽️ The farewell dinner
+LOCATION:Tokyo
+DESCRIPTION:Whichever table won the vote. Day: Meiji Jingū → Harajuku 
+ → Shinjuku Gyoen → Shibuya Crossing + Hachikō → free view from the 
+ Metropolitan Government deck.
+END:VEVENT
+BEGIN:VEVENT
+UID:japan-2026-15@japan-2026
+DTSTAMP:20260821T090000Z
+DTSTART;TZID=Asia/Tokyo:20261106T054500
+DTEND;TZID=Asia/Tokyo:20261106T083000
+SUMMARY:✈️ Fly home — CA-184\, 08:30 from Haneda T3
+LOCATION:Haneda Airport Terminal 3
+DESCRIPTION:Leave the hotel by 5:45 — the Asakusa subway line runs direct
+  to Haneda T3 (~40 min\; taxi ~25 min as backup). At T3 by 6:30: check-in\
+ , tax-refund customs BEFORE security for post-Nov-1 purchases (passports +
+  receipts). CA-184 08:30 → Beijing 11:40 · layover 2 h 35 min\, same te
+ rminal · CA-909 14:15 → Moscow SVO Terminal C 17:40. Baggage: 2 checked
+  + 5 kg cabin. Yulia's return: TBD.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Wake up — out the door by 5:45\, Haneda by 6:30
+TRIGGER:-PT45M
+END:VALARM
+END:VEVENT
+END:VCALENDAR
