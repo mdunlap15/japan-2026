@@ -431,6 +431,7 @@
   .agmenu{position:absolute;right:6px;top:calc(100% + 4px);z-index:70;background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 32px rgba(25,29,58,.22);display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:8px}
   .agmenu button{border:1px solid var(--line);background:var(--paper-2);border-radius:8px;padding:6px 4px;font-family:"Space Mono",monospace;font-size:9.5px;cursor:pointer;white-space:nowrap}
   .agmenu button:disabled{opacity:.35;cursor:default}
+  .agmenu-note{grid-column:1/-1;font-family:"Space Mono",monospace;font-size:9px;letter-spacing:.04em;color:var(--ink-soft);padding:2px 2px 0}
   .agmenu .ag-rm{grid-column:1/-1;color:var(--cerise);border-color:rgba(224,74,56,.45)}
   .aggap{font-family:"Space Mono",monospace;font-size:9px;letter-spacing:.05em;color:var(--ink-soft);padding:0 0 0 34px;margin:-2px 0}
   .dirrow{display:flex;justify-content:space-between;gap:10px;padding:8px 2px;border-bottom:1px dashed var(--line);font-size:14px;align-items:baseline}
@@ -3058,13 +3059,6 @@
       <h2><span class="L-en">Journal</span><span class="L-ru">Дневник</span></h2>
     </div>
     <div class="whoslot"></div>
-    <div class="grp"><h3><span class="L-en">Where we went</span><span class="L-ru">Где мы побывали</span></h3>
-      <p class="gsub"><span class="L-en">Tap what you visit as you go — the recap writes itself.</span><span class="L-ru">Отмечайте места по пути — итог поездки сложится сам.</span></p>
-      <div class="extot" id="vsum" style="margin:0 0 10px"></div>
-      <div id="visits"></div>
-      <div class="acts" style="margin-top:14px"><button class="act site" id="recapcopy" type="button"><span class="L-en">Copy trip recap</span><span class="L-ru">Скопировать итог поездки</span></button></div>
-    </div>
-
     <div class="grp"><h3><span class="L-en">Wine journal</span><span class="L-ru">Винный дневник</span></h3>
       <p class="gsub"><span class="L-en">Wine or sake — shoot the label or upload it from your photos; the sommelier reads it and links the maker, the bottle and where to buy. Or type it in.</span><span class="L-ru">Вино или сакэ — сфотографируйте этикетку или загрузите фото; сомелье прочитает её и найдёт производителя, бутылку и где купить. Или впишите вручную.</span></p>
       <div class="acts" style="margin-bottom:10px">
@@ -3086,6 +3080,13 @@
       <div id="mealstatus" class="wx" style="display:block;margin:4px 0 8px"></div>
       <div id="mealpick" hidden></div>
       <div id="meals"></div>
+    </div>
+
+    <div class="grp"><h3><span class="L-en">Where we went</span><span class="L-ru">Где мы побывали</span></h3>
+      <p class="gsub"><span class="L-en">Tap what you visit as you go — the recap writes itself.</span><span class="L-ru">Отмечайте места по пути — итог поездки сложится сам.</span></p>
+      <div class="extot" id="vsum" style="margin:0 0 10px"></div>
+      <div id="visits"></div>
+      <div class="acts" style="margin-top:14px"><button class="act site" id="recapcopy" type="button"><span class="L-en">Copy trip recap</span><span class="L-ru">Скопировать итог поездки</span></button></div>
     </div>
 
   </section>
@@ -3991,6 +3992,34 @@ const WHO = {}; const WHORU = {};
 (T2.TRAVELERS||[]).forEach(t=>{ WHO[t[0]]=t[1]; WHORU[t[0]]=t[2]||t[1]; });
 const whoName = (k)=> (RL()?WHORU:WHO)[k];
 const cityLabel = (c)=>{ const ct=(T2.CITIES||{})[c]||{}; return (RL()?(ct.labelRu||ct.label):ct.label)||c; };
+// ---- geography guards for the agenda: which city a point belongs to, and where the group can be on a given day ----
+function cityOfPoint(pt){
+  if(!pt) return null;
+  let best=null, bd=Infinity;
+  Object.entries(T2.CITIES||{}).forEach(([k,c])=>{ const d=haversine(pt[0],pt[1],c.lat,c.lng); if(d<bd){ bd=d; best=k; } });
+  return best;
+}
+const DAY_REGION={};
+function dayRegion(dayKey){
+  if(DAY_REGION[dayKey]) return DAY_REGION[dayKey];
+  const d=(T2.DAYS||[]).find(x=>x.key===dayKey); const set=new Set();
+  if(d){
+    if(d.city) set.add(d.city);
+    const L=T2.LODGING||[];
+    const dt=new Date(d.date+'T12:00:00'); const prev=new Date(dt.getTime()-864e5);
+    const iso=(x)=>x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0');
+    [iso(prev), d.date].forEach(k=>{ const l=L.find(r=>k>=r.from&&k<=r.to); if(l){ const c=cityOfPoint([l.lat,l.lng]); if(c) set.add(c); } });
+  }
+  DAY_REGION[dayKey]=set; return set;
+}
+function agCanMove(id,dayKey){
+  const it=AGSEED[id]; if(!it) return false;
+  if(!it.p) return true; // no geography known → don't block
+  const region=dayRegion(dayKey);
+  const cities=[cityOfPoint(it.p), cityOfPoint(it.q)].filter(Boolean);
+  return cities.some(c=>region.has(c));
+}
+
 const SB_TABLE = 'mtlqc_items'; // shared table across trips — rows are scoped by trip_id
 const $ = (s)=>document.querySelector(s);
 const $$ = (s)=>Array.from(document.querySelectorAll(s));
@@ -4586,12 +4615,16 @@ function renderAgenda(day){
       box.querySelectorAll('.agmenu').forEach(m=>m.remove());
       const menu=document.createElement('div'); menu.className='agmenu';
       if(!AGSEED[id].lock){
+        const here=cityOfPoint(AGSEED[id].p);
         (T.DAYS||[]).forEach(d=>{
           const b=document.createElement('button'); b.type='button';
           b.textContent=(RL()?(d.dwRu||d.dw):d.dw)+' '+d.dn;
-          b.disabled=d.key===day;
+          const ok=agCanMove(id,d.key);
+          b.disabled=d.key===day||!ok;
+          if(!ok) b.title=RL()?('В этот день вы в другом городе: '+cityLabel(d.city)):('You are elsewhere that day: '+cityLabel(d.city));
           b.onclick=(ev)=>{
             ev.stopPropagation();
+            if(!agCanMove(id,d.key)){ toast(RL()?'В этот день вы будете в другом городе':'You will be in a different city that day'); return; }
             const fromIds=agIds(day).filter(x=>x!==id);
             const toIds=agIds(d.key).concat([id]);
             agSave(day,fromIds); agSave(d.key,toIds);
@@ -4599,6 +4632,9 @@ function renderAgenda(day){
           };
           menu.appendChild(b);
         });
+        const note=document.createElement('div'); note.className='agmenu-note';
+        note.textContent=here?('📍 '+cityLabel(here)+' · '+(RL()?'только дни, когда вы там':'only days you are there')):'';
+        if(here) menu.appendChild(note);
       }
       const rm=document.createElement('button'); rm.type='button'; rm.className='ag-rm';
       rm.textContent=RL()?'✕ Убрать из этого дня':'✕ Remove from this day';
