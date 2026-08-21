@@ -4082,13 +4082,30 @@ async function sbInit(){
     if(error) throw error;
     (data||[]).forEach(r=>{ state[r.kind]=state[r.kind]||{}; state[r.kind][r.k]=r.v; });
     sb.channel('trip').on('postgres_changes',{event:'*',schema:'public',table:SB_TABLE,filter:'trip_id=eq.'+CFG.TRIP_ID},payload=>{
-      const r=payload.new; if(r&&r.kind){ state[r.kind][r.k]=r.v; renderTrip(); }
+      const r=payload.new;
+      if(!r||!r.kind) return;
+      // Ignore rows echoing back while our own write for this key is still in flight (or just
+      // settled) — otherwise a delayed echo of the PREVIOUS value silently undoes what we just
+      // did, which is what made clearing a vote appear to "bounce back".
+      if(!syncRemoteFresh(r.kind+'|'+r.k)) return;
+      state[r.kind][r.k]=r.v; renderTrip();
     }).subscribe();
   }catch(e){ sb=false; $('#tripsetup').hidden=false; }
 }
+const SYNC_PENDING={};
+function syncRemoteFresh(key){
+  const w=SYNC_PENDING[key];
+  if(!w) return true;
+  if(w.n>0) return false;                 // our own write is still in flight — ours is newer
+  return (new Date().getTime()-w.t)>2500; // brief grace for the echo to land and be discarded
+}
 async function put(kind,k,v){
+  const key=kind+'|'+k;
+  const w=SYNC_PENDING[key]||(SYNC_PENDING[key]={n:0,t:0});
+  w.n++;
   state[kind][k]=v; localSave(); renderTrip();
   if(sb){ try{ await sb.from(SB_TABLE).upsert({trip_id:CFG.TRIP_ID,kind,k,v,updated_at:new Date().toISOString()},{onConflict:'trip_id,kind,k'}); }catch(e){} }
+  w.n--; w.t=new Date().getTime();
 }
 
 const VGROUPS=(T2.VGROUPS||[]);
