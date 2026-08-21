@@ -3136,6 +3136,11 @@
       <button class="mitem" data-go="trip"><b><span class="L-en">Notes &amp; spending</span><span class="L-ru">Заметки и расходы</span></b><span><span class="L-en">Shared notes · expense log</span><span class="L-ru">Общие заметки · учёт трат</span></span></button>
       <button class="mitem" data-go="toolkit"><b><span class="L-en">Toolkit</span><span class="L-ru">Инструменты</span></b><span><span class="L-en">Menu decoder · emergency</span><span class="L-ru">Разбор меню · экстренное</span></span></button>
     </div>
+    <p class="gsub" style="margin-top:18px;text-align:center;font-family:'Space Mono',monospace;font-size:10px">
+      <span class="L-en">App version</span><span class="L-ru">Версия приложения</span>
+      <span id="buildstamp"></span> ·
+      <button type="button" id="forceupdate" style="border:0;background:none;color:var(--cerise);font:inherit;text-decoration:underline;cursor:pointer"><span class="L-en">check for update</span><span class="L-ru">проверить обновление</span></button>
+    </p>
   </section>
 
 
@@ -3690,8 +3695,23 @@ window.TRIP = {
 
 <script>
   // ----- Offline support (hosted) -----
+  window.APP_BUILD = 'v5 · 22 Aug 2026';
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
-    window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then((reg) => {
+        // Check for a new version on launch and whenever the app comes back to the foreground,
+        // so an installed phone never sits on a stale build.
+        const poke = () => { try { reg.update(); } catch (e) {} };
+        poke();
+        document.addEventListener('visibilitychange', () => { if (!document.hidden) poke(); });
+        window.addEventListener('focus', poke);
+      }).catch(() => {});
+      // A new service worker took over → load the fresh page once.
+      let reloaded = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (reloaded) return; reloaded = true; location.reload();
+      });
+    });
   }
 
   // ----- iOS install hint: show on iPhone/iPad Safari when not already installed -----
@@ -3939,6 +3959,25 @@ window.TRIP = {
       const b=document.getElementById('a2hs'); b.classList.add('on');
       b.onclick=()=>{ deferred.prompt(); deferred.userChoice.finally(()=>{ document.body.classList.remove('show-install'); deferred=null; }); };
     });
+  }catch(e){}
+
+  // ----- build stamp + manual update check (More tab) -----
+  try{
+    const bs=document.getElementById('buildstamp');
+    if(bs) bs.textContent=' '+(window.APP_BUILD||'dev');
+    const fu=document.getElementById('forceupdate');
+    if(fu) fu.onclick=async()=>{
+      const ru=isRu();
+      try{
+        if('serviceWorker' in navigator){
+          const regs=await navigator.serviceWorker.getRegistrations();
+          await Promise.all(regs.map(r=>r.update()));
+        }
+        if(window.caches){ const keys=await caches.keys(); await Promise.all(keys.map(k=>caches.delete(k))); }
+      }catch(e){}
+      toast(ru?'Обновляю…':'Updating…');
+      setTimeout(()=>location.reload(true),600);
+    };
   }catch(e){}
 </script>
 
